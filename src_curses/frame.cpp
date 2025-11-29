@@ -1,4 +1,5 @@
 #include "frame.hpp"
+#include "entity.cpp"
 #include <ncurses.h>
 #include <string>
 
@@ -40,4 +41,16 @@ void Frame::init_frame()
 void	Frame::end_game()
 {
 	endwin();
+}
+
+
+void	render_frame(vector<Entity, entity_lst>)
+{
+	
+}
+
+void	render_entity(Entity::entity)
+{
+	move(entity.get_lines(), entity.get_cols());
+	printw(entity.get_display().c_str());
 }

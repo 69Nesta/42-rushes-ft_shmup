@@ -10,6 +10,8 @@ class Frame
 		void	end_game();
 
 	private:
+
+		void	render_entity();	
 		
 
 };
