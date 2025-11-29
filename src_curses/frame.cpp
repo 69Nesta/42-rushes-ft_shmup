@@ -41,40 +41,48 @@ WINDOW	*init_bot()
 	return (layer);
 }
 
+//WINDOW** Frame::init_frame()
 void Frame::init_frame()
 {
 	char	ch;
-	int		size;
-	WINDOW	*top_layer;
-	WINDOW	*bot_layer;
+    WINDOW  *layer[2];
 	string str = "press a [Space] to start the game";
 		
 	initscr();
 	noecho();
-	top_layer = init_top();
-	bot_layer = init_bot();
+	layer[0] = init_top();
+	layer[1] = init_bot();
 	curs_set(0);
 	move(LINES / 2, COLS / 4);
 	printw(">");
 	move(LINES / 2,  (COLS / 2) - str.size() + 20 );	
 	printw(str.c_str());
 	refresh();
-	wrefresh(top_layer);
-	wrefresh(bot_layer);
+	wrefresh(layer[0]);
+	wrefresh(layer[1]);
 	while ((ch = getch()) != ' ')
 	{
 		refresh();
-		wrefresh(top_layer);
-	wrefresh(bot_layer);
+	    wrefresh(layer[0]);
+	    wrefresh(layer[1]);
 	}
 	refresh();
+//    return (layer);
 }
 
+//void	Frame::end_game(WINDOW **layer)
 void	Frame::end_game()
 {
+//    delwin(layer[0]);
+//    delwin(layer[1]);
 	endwin();
 }
 
+void    erase_entity(Entity entity)
+{
+	move(entity.get_lines(), entity.get_cols());
+	addch(' ');
+}
 
 void	render_entity(Entity entity)
 {
@@ -82,7 +90,15 @@ void	render_entity(Entity entity)
 	addch(entity.get_ship());
 }
 
-void	render_frame(vector<Entity> &entity, WINDOW *top_layer, WINDOW *bot_layer)
+void    clear_entity_frame(vector<Entity> entity)
+{
+    for(Entity n : entity)
+    {
+        erase_entity(n);
+    }
+}
+
+void	render_entity_frame(vector<Entity> entity)
 {
 	for(Entity n : entity) 	
 	{

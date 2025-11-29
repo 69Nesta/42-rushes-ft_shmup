@@ -1,13 +1,13 @@
 #include "entity.hpp"
 #include <vector>
 
-namespace std;
+using namespace std;
 
 //
 //                          Entity vector list
 //
 
-Vector<Entity>  Entity::init_vec_entity(Entity entity)
+vector<Entity>  Entity::init_vec_entity(Entity entity)
 {
     vector<Entity> v;
 
@@ -36,9 +36,9 @@ Entity	init_player(unsigned int cols, unsigned int lines)
 
 bool    Entity::check_collision(Entity a, Entity b)
 {
-    if (a.get_cols == b.get_cols && a.get_lines == b.get_lines)
-        return (TRUE);
-    return (FALSE);
+    if (a.get_cols() == b.get_cols() && a.get_lines() == b.get_lines())
+        return (true);
+    return (false);
 }
 
 unsigned int	Entity::get_lines()
@@ -84,16 +84,6 @@ void    Entity::decrement_entity_cols()
 //                  Projectile Entity functions
 //
 
-Projectile (unsigned int cols, unsigned int lines, int direction) 
-{
-	this->cols = cols;
-	this->lines = lines;
-	this->direction = direction;
-	this->ship = '-';
-    return (Projectile);
-}
-
-
 Projectile   Player::shoot(Player player)
 {
 	Projectile projectile(player.cols + 1, player.lines, 1);
@@ -111,35 +101,25 @@ Projectile	Ennemy::shoot(Ennemy ennemy)
 //                          Player   function
 //
 
-Player (unsigned int cols, unsigned int lines)
-{
-	this->cols = cols;
-	this->lines = lines;
-	this->ship = '>';
-}
 
-void    Player::player_get_hit(bool hit, gamestate::health health)
+
+/*void    Player::player_get_hit(bool hit, gamestate::health health)
 {
     if (hit == TRUE)
         health--;
-}
+}*/
 
 //
 //                      Ennemy function
 //
 
-Ennemy(unsigned int cols, unsigned int lines)
-{
-	this->cols = cols;
-	this->lines = lines;
-	this->ship = '<';
-}
 
-void    Ennemy::ennemy_get_hit(bool hit, gamestate::score score)
+
+/*void    Ennemy::ennemy_get_hit(bool hit, gamestate::score score)
 {
     if (hit == TRUE)
     {
         score += 100;
         ~Ennemy();
     }
-}
+}*/
