@@ -11,6 +11,21 @@ Entity	init_player(unsigned int cols, unsigned int lines)
 	return (Player(cols, lines));
 }
 
+unsigned int	Entity::get_lines()
+{
+	return (Entity::lines);
+}
+
+unsigned int	Entity::get_cols()
+{
+	return (Entity::cols);
+}
+
+char	Entity::get_ship()
+{
+	return (Entity::ship);
+}
+
 void	Entity::increment_entity_lines()
 {
 	Entity::lines -= 1;

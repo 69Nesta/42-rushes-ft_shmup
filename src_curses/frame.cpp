@@ -2,6 +2,7 @@
 #include "entity.cpp"
 #include <ncurses.h>
 #include <string>
+#include <vector>
 
 using namespace std;
 /*
@@ -44,13 +45,18 @@ void	Frame::end_game()
 }
 
 
-void	render_frame(vector<Entity, entity_lst>)
-{
-	
-}
-
-void	render_entity(Entity::entity)
+void	render_entity(Entity entity)
 {
 	move(entity.get_lines(), entity.get_cols());
-	printw(entity.get_display().c_str());
+	addch(entity.get_ship());
 }
+
+void	render_frame(vector<Entity> &entity)
+{
+	for(Entity n : entity) 	
+	{
+		move(n.get_lines(), n.get_cols());
+		render_entity(n);	
+	}
+}
+

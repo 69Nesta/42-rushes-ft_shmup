@@ -10,13 +10,15 @@ class Entity
 		Entity 			init_projectile();
 		unsigned int	get_lines();
 		unsigned int	get_cols();
-		void		decrement_entity_lines();
-		void		increment_entity_lines();
+		void			decrement_entity_lines();
+		void			increment_entity_lines();
+		char			get_ship();
 		
 	private:
 
 		unsigned int cols;		//COLS
 		unsigned int lines;		//LINES
+		char	ship;
 
 };
 
