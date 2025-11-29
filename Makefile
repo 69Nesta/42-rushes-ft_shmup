@@ -1,26 +1,27 @@
+TARGET = ft_shmup
+
 CXX = c++
-CXXFLAGS = -Wall -Wextra -std=c++11 -I includes
-DEPFLAGS = -MD
+CXXFLAGS = -Wall -Wextra -std=gnu++2b -I includes
+DEPFLAGS = -MMD -MP
 
 SRCDIR = src
 OBJDIR = .obj
 
-SOURCES = main.cpp
-OBJECTS = $(SOURCES:%.cpp=$(OBJDIR)/%.o)
-DEPFILES = $(OBJECTS:.o=.d)
+SOURCES = main.cpp GameEntity.cpp
 
-TARGET = ft_shmup
+OBJECTS = $(addprefix $(OBJDIR)/, $(SOURCES:.cpp=.o))
+DEPS = $(OBJECTS:.o=.d)
 
 all: $(TARGET)
 
 $(TARGET): $(OBJECTS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-$(OBJDIR)/%.o: %.cpp
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	@mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) $(DEPFLAGS) -c $< -o $@
 
--include $(OBJECTS:.o=.d)
+-include $(DEPS)
 
 clean:
 	rm -rf $(OBJDIR)
@@ -28,4 +29,6 @@ clean:
 fclean: clean
 	rm -f $(TARGET)
 
-.PHONY: all clean fclean
+re: fclean all
+
+.PHONY: all clean fclean re
