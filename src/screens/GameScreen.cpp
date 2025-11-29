@@ -1,6 +1,9 @@
 #include "screens/GameScreen.hpp"
 
-GameScreen::GameScreen(IScreenManager& screen_manager): Screen(screen_manager, ScreenType::GAME)
+GameScreen::GameScreen(IScreenManager& screen_manager, GameClock& game_clock, GameStateManager& game_state_manager): 
+	Screen(screen_manager, ScreenType::GAME),
+	game_clock(game_clock),
+	game_state_manager(game_state_manager)
 {
 	int		hud_h;
 	int		tooltips_h;
@@ -34,7 +37,6 @@ GameScreen::~GameScreen()
 void	GameScreen::initialize(void)
 {
 	erase();
-	// mvwprintw(this->window, LINES / 2, (COLS / 2) - start_msg.length() / 2, start_msg.c_str());
 	box(this->hud, ACS_VLINE, ACS_HLINE);
 	box(this->game, ACS_VLINE, ACS_HLINE);
 	box(this->toolstip, ACS_VLINE, ACS_HLINE);
@@ -45,7 +47,19 @@ void	GameScreen::initialize(void)
 
 void	GameScreen::handle_input(InputHandler& input)
 {
+	if (input.key_is_pressed(410))
+		this->resize();
+}
 
+void	GameScreen::resize()
+{
+	erase();
+	box(this->hud, ACS_VLINE, ACS_HLINE);
+	box(this->game, ACS_VLINE, ACS_HLINE);
+	box(this->toolstip, ACS_VLINE, ACS_HLINE);
+	wrefresh(this->hud);
+	wrefresh(this->game);
+	wrefresh(this->toolstip);
 }
 
 void	GameScreen::update(float delta_time)
@@ -56,9 +70,11 @@ void	GameScreen::update(float delta_time)
 
 void	GameScreen::render(void)
 {
+	mvwprintw(this->hud, 1, COLS / 2 - 11/2, "FPS: %6.0f", this->game_clock.calculate_fps());
+	// mvwprintw(this->game, 1, COLS / 2 - 11/2, "FPS: %6.0f", this->game_clock.calculate_fps());
 	wrefresh(this->hud);
-	wrefresh(this->game);
-	wrefresh(this->toolstip);
+	// wrefresh(this->game)s;
+	// wrefresh(this->toolstip);
 	// render player
 	// render enemy
 	// render bullets

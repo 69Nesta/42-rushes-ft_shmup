@@ -31,19 +31,26 @@ void	LobbyScreen::render(void)
 
 }
 
-void	LobbyScreen::handle_input(InputHandler& input)
+void	LobbyScreen::resize()
 {
-	if (input.key_is_pressed(' '))
-	{
-		this->screen_manager.change_screen(ScreenType::GAME);
-	}
-}
-
-void	LobbyScreen::initialize(void)
-{
+	erase();
 	std::string start_msg = "Press [Space] to start";
 
 	mvwprintw(this->window, LINES / 2, (COLS / 2) - start_msg.length() / 2, start_msg.c_str());
 	box(this->window, ACS_VLINE, ACS_HLINE);
 	wrefresh(this->window);
+}
+
+void	LobbyScreen::handle_input(InputHandler& input)
+{
+	if (input.key_is_pressed(' '))
+	{
+		this->screen_manager.change_screen(ScreenType::GAME);
+	} else if (input.key_is_pressed(410))
+		this->resize();
+}
+
+void	LobbyScreen::initialize(void)
+{
+	this->resize();
 }

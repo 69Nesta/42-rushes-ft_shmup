@@ -50,7 +50,7 @@ void Engine::render()
 void	Engine::initialize_screens()
 {
 	auto	lobby_screen = std::make_shared<LobbyScreen>(this->screen_manager, this->game_state_manager);
-	auto	game_screen = std::make_shared<GameScreen>(this->screen_manager);
+	auto	game_screen = std::make_shared<GameScreen>(this->screen_manager, this->clock, this->game_state_manager);
 	this->screen_manager.register_screen(ScreenType::LOBBY, lobby_screen);
 	this->screen_manager.register_screen(ScreenType::GAME, game_screen);
 

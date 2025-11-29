@@ -15,4 +15,5 @@ public:
 	void	update(float delta_time) override;
 	void	render(void) override;
 	void	handle_input(InputHandler& input) override;
+	void	resize();
 };
