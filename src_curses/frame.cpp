@@ -18,6 +18,7 @@ void Frame::init_frame()
 	string str = "press a [Space] to start the game";
 		
 	initscr();
+	curs_set(0);
 	move(LINES / 2, 0);
 	printw(">");
 	move(LINES / 2,  (COLS / 2) - str.size() + 25 );	
@@ -26,6 +27,7 @@ void Frame::init_frame()
 	while ((ch = getch()) != ' ')
 	{
 		erase();
+		curs_set(0);
 		move (LINES/ 2, 0);
 		printw(">");
 		move(LINES / 2 ,  (COLS / 2) - str.size() + 25 );	
@@ -35,3 +37,7 @@ void Frame::init_frame()
 	refresh();
 }
 
+void	Frame::end_game()
+{
+	endwin();
+}
