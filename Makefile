@@ -1,17 +1,22 @@
 TARGET = ft_shmup
 
 CXX = c++
-CXXFLAGS = -Wall -Wextra -std=gnu++2b -I includes
+#CXXFLAGS = -Wall -Wextra -std=gnu++2b -I includes -g3
+CXXFLAGS = -std=gnu++2b -I includes -g3
 DEPFLAGS = -MMD -MP
 
 SRCDIR = src
 OBJDIR = .obj
 
 SOURCES = main.cpp \
-		classes/Engine.cpp \
-		classes/Window.cpp \
-		classes/LobbyScreen.cpp \
-		classes/GameScreen.cpp 
+		engine/Engine.cpp \
+		engine/GameClock.cpp \
+		engine/InputHandler.cpp \
+		managers/GameStateManager.cpp \
+		screens/Screen.cpp \
+		screens/ScreenManager.cpp \
+		screens/ScreenLobby.cpp \
+		screens/ScreenGame.cpp
 
 OBJECTS = $(addprefix $(OBJDIR)/, $(SOURCES:.cpp=.o))
 DEPS = $(OBJECTS:.o=.d)

@@ -1,3 +1,5 @@
+#pragma once
+
 class GameStateManager
 {
 private:
@@ -8,17 +10,9 @@ public:
 	GameStateManager(/* args */);
 	~GameStateManager();
 
-	void	rest();
-	void	add_score();
-	void	loseLife();
-	void	setGameOver();
+	void	rest(void);
+	void	add_score(int value = 1);
+	void	loseLife(void);
+	void	setGameOver(void);
 
 };
-
-GameStateManager::GameStateManager(/* args */)
-{
-}
-
-GameStateManager::~GameStateManager()
-{
-}
