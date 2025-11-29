@@ -12,13 +12,16 @@ class Entity
 		unsigned int	get_cols();
 		void			decrement_entity_lines();
 		void			increment_entity_lines();
+        void            increment_entity_cols();
+        void            decrement_entity_cols();
+        void            check_collision(Entity a, Entity b);
 		char			get_ship();
 		
 	private:
 
 		unsigned int cols;		//COLS
 		unsigned int lines;		//LINES
-		char	ship;
+		char	     ship;
 
 };
 
@@ -32,13 +35,9 @@ class Projectile : public Entity {
 	
 	public :
 
-		
-		Projectile(unsigned int cols, unsigned int lines, int direction) {
-			this->cols = cols;
-			this->lines = lines;
-			this->direction = direction;
-			this->ship = '-';
-		}
+		Projectile(unsigned int cols, unsigned int lines, int direction);
+        ~Projectile();
+
 };
 
 class Player: public Entity {
@@ -55,6 +54,7 @@ class Player: public Entity {
 			this->lines = lines;
 			this->ship = '>';
 		}
+        void player_get_hit(bool hit, gamestate::health health);
 };
 
 class Ennemy: public Entity {
@@ -72,6 +72,7 @@ class Ennemy: public Entity {
 				this->lines = lines;
 				this->ship = '<';
 			}
+            void ennemy_get_hit(bool hit, gamestate::score score);
 };
 
 
