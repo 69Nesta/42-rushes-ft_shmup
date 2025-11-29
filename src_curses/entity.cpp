@@ -1,18 +1,38 @@
 #include "entity.hpp"
+#include <vector>
+
+namespace std;
+
+//
+//                          Entity vector list
+//
+
+Vector<Entity>  Entity::init_vec_entity(Entity entity)
+{
+    vector<Entity> v;
+
+    v.push_back(entity);
+    return (v);
+}
+
+void  Entity::clear_vec(vector<Entity> v)
+{
+    v.clear();
+}
 
 Entity	init_enemy(unsigned int cols, unsigned int lines)
 {
 	return (Ennemy(cols, lines));
 }
 
-
 Entity	init_player(unsigned int cols, unsigned int lines)
 {
 	return (Player(cols, lines));
 }
 
-//  Entity check position && collision
-
+//
+//                  Entity check position && collision
+//
 
 bool    Entity::check_collision(Entity a, Entity b)
 {
@@ -36,9 +56,9 @@ char	Entity::get_ship()
 	return (Entity::ship);
 }
 
-
-//  Entity Movement update
-
+//
+//                      Entity Movement update
+//
 
 void	Entity::increment_entity_lines()
 {
@@ -60,15 +80,17 @@ void    Entity::decrement_entity_cols()
     Entity::cols -= 1;
 }
 
-// Projectile Entity functions
+//
+//                  Projectile Entity functions
+//
 
 Projectile (unsigned int cols, unsigned int lines, int direction) 
 {
-			this->cols = cols;
-			this->lines = lines;
-			this->direction = direction;
-			this->ship = '-';
-            return (Projectile);
+	this->cols = cols;
+	this->lines = lines;
+	this->direction = direction;
+	this->ship = '-';
+    return (Projectile);
 }
 
 
@@ -85,7 +107,16 @@ Projectile	Ennemy::shoot(Ennemy ennemy)
 	return (projectile);
 }
 
-// Player   function
+//
+//                          Player   function
+//
+
+Player (unsigned int cols, unsigned int lines)
+{
+	this->cols = cols;
+	this->lines = lines;
+	this->ship = '>';
+}
 
 void    Player::player_get_hit(bool hit, gamestate::health health)
 {
@@ -93,10 +124,22 @@ void    Player::player_get_hit(bool hit, gamestate::health health)
         health--;
 }
 
-// Ennemy function
+//
+//                      Ennemy function
+//
+
+Ennemy(unsigned int cols, unsigned int lines)
+{
+	this->cols = cols;
+	this->lines = lines;
+	this->ship = '<';
+}
 
 void    Ennemy::ennemy_get_hit(bool hit, gamestate::score score)
 {
     if (hit == TRUE)
+    {
         score += 100;
+        ~Ennemy();
+    }
 }

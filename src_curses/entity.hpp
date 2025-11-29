@@ -5,9 +5,11 @@
 class Entity
 {
 	public:
+
+	    Vector<Entity>  init_vec_entity(Entity entity)	Entity 			init_projectile();
+        void            clear_vec(Vector<Entity> v);
 		Entity 			init_enemy();
 		Entity 			init_player();
-		Entity 			init_projectile();
 		unsigned int	get_lines();
 		unsigned int	get_cols();
 		void			decrement_entity_lines();
@@ -47,13 +49,10 @@ class Player: public Entity {
 		unsigned int	lines;
 
 	public:
-		Projectile	shoot(Player);
 
-		Player(unsigned int cols, unsigned int lines) {
-			this->cols = cols;
-			this->lines = lines;
-			this->ship = '>';
-		}
+		Player(unsigned int cols, unsigned int lines);
+        ~Player();
+		Projectile	shoot(Player);
         void player_get_hit(bool hit, gamestate::health health);
 };
 
@@ -67,13 +66,9 @@ class Ennemy: public Entity {
 		public:
 			Projectile shoot(Ennemy);
 
-			Ennemy(unsigned int cols, unsigned int lines) {
-				this->cols = cols;
-				this->lines = lines;
-				this->ship = '<';
-			}
+			Ennemy(unsigned int cols, unsigned int lines);
+            ~Ennemy();
             void ennemy_get_hit(bool hit, gamestate::score score);
 };
-
 
 #endif
