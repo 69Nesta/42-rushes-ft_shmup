@@ -41,10 +41,10 @@ Projectile   Player::shoot(Player player)
 	Projectile projectile(player.cols, player.lines, 1);
 
 	return (projectile);
-}	
+}
 
 Projectile	Ennemy::shoot(Ennemy ennemy)
 {
-	Projectile projectile(ennemy.cols, ennemy.lines, 1);
+	Projectile projectile(ennemy.cols, ennemy.lines, -1);
 	return (projectile);
 }
