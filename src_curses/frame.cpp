@@ -13,28 +13,59 @@ using namespace std;
  *
  * */
 
+WINDOW	*init_top()
+{
+	WINDOW	*layer;
+	string health = "HEALTH :";
+	string score = "SCORE : ";
+	
+	layer = subwin(stdscr, 3, COLS, 0, 0);
+	wmove(layer, 1, 1);
+	wprintw(layer, health.c_str());
+	wmove(layer, 1, COLS - score.size() - 12);
+	wprintw(layer, score.c_str());
+	box(layer, ACS_VLINE, ACS_HLINE);
+	return (layer);
+}
+
+WINDOW	*init_bot()
+{
+
+	WINDOW	*layer;
+	string key = " [W] = Up       [S] = Down      [SPACE] = SHOOT !!!";
+	
+	layer = subwin(stdscr, 3, COLS, LINES - 4, 0);
+	wmove(layer, 1, 1);
+	wprintw(layer, key.c_str());
+	box(layer, ACS_VLINE, ACS_HLINE);
+	return (layer);
+}
+
 void Frame::init_frame()
 {
 	char	ch;
 	int		size;
+	WINDOW	*top_layer;
+	WINDOW	*bot_layer;
 	string str = "press a [Space] to start the game";
 		
 	initscr();
+	noecho();
+	top_layer = init_top();
+	bot_layer = init_bot();
 	curs_set(0);
-	move(LINES / 2, 0);
+	move(LINES / 2, COLS / 4);
 	printw(">");
-	move(LINES / 2,  (COLS / 2) - str.size() + 25 );	
+	move(LINES / 2,  (COLS / 2) - str.size() + 20 );	
 	printw(str.c_str());
 	refresh();
+	wrefresh(top_layer);
+	wrefresh(bot_layer);
 	while ((ch = getch()) != ' ')
 	{
-		erase();
-		curs_set(0);
-		move (LINES/ 2, 0);
-		printw(">");
-		move(LINES / 2 ,  (COLS / 2) - str.size() + 25 );	
-		printw(str.c_str());
 		refresh();
+		wrefresh(top_layer);
+	wrefresh(bot_layer);
 	}
 	refresh();
 }
@@ -51,7 +82,7 @@ void	render_entity(Entity entity)
 	addch(entity.get_ship());
 }
 
-void	render_frame(vector<Entity> &entity)
+void	render_frame(vector<Entity> &entity, WINDOW *top_layer, WINDOW *bot_layer)
 {
 	for(Entity n : entity) 	
 	{
