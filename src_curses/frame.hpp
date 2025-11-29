@@ -5,7 +5,9 @@ class Frame
 {
 	public:
 
-		void init_frame();
+		void	init_frame();
+		void	render_frame();
+		void	end_game();
 
 	private:
 		
