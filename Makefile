@@ -43,6 +43,6 @@ re: fclean all
 test: all
 	@echo
 	@echo
-	@valgrind ./$(TARGET)
+	@valgrind --leak-check=full ./$(TARGET)
 
 .PHONY: all clean fclean re

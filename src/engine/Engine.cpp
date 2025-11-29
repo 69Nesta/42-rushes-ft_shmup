@@ -4,10 +4,12 @@ Engine::Engine(): is_running(true)
 {
 	initscr();
 	initialize_screens();
+	this->run();
 }
 
 Engine::~Engine()
 {
+	
 }
 
 void Engine::run()
@@ -16,6 +18,8 @@ void Engine::run()
 	{
 		this->clock.set_start_frame();
 		this->process_input();
+		this->screen_manager.update(this->clock.get_delta_time());
+		this->screen_manager.render();
 	}
 }
 

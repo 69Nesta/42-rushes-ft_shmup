@@ -1,4 +1,6 @@
 #pragma once
+#include <ncurses.h>
+#include <stdlib.h>
 
 enum ScreenType {
 	LOBBY,

@@ -4,6 +4,10 @@
 class ScreenGame : public Screen
 {
 private:
+	WINDOW* hud;
+	WINDOW* game;
+	WINDOW* toolstip;
+
 public:
 	ScreenGame();
 	~ScreenGame();

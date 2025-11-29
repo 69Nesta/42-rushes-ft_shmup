@@ -1,8 +1,6 @@
 #pragma once
 #include "Screen.hpp"
 #include "managers/GameStateManager.hpp"
-#include <ncurses.h>
-#include <stdlib.h>
 
 class ScreenLobby: public Screen
 {
