@@ -1,20 +1,50 @@
 #include "engine/InputHandler.hpp"
 
-InputHandler::InputHandler(): key(0)
+InputHandler::InputHandler() : currentKey(0), previousKey(0), initialized(false)
 {
-
 }
 
 InputHandler::~InputHandler()
 {
 }
 
-void	InputHandler::process_event()
+void InputHandler::initialize()
 {
-	this->key = getch();
+	if (!initialized)
+	{
+		initscr();
+		cbreak();
+		noecho();
+		keypad(stdscr, TRUE);
+		nodelay(stdscr, TRUE);
+		this->initialized = true;
+	}
 }
 
-int		InputHandler::get_current_key()
+void InputHandler::shutdown()
 {
-	return (this->key);
+	if (this->initialized)
+	{
+		endwin();
+		this->initialized = false;
+	}
+}
+
+void InputHandler::process_event()
+{
+	this->previousKey = this->currentKey;
+	this->currentKey = getch();
+
+	if (this->currentKey == ERR)
+		this->currentKey = 0;
+}
+
+bool InputHandler::key_is_pressed(int key)
+{
+	return (this->currentKey == key);
+}
+
+int InputHandler::get_current_key()
+{
+	return this->currentKey;
 }

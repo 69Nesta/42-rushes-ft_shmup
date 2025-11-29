@@ -1,7 +1,7 @@
 #pragma once
 #include "Screen.hpp"
 
-class ScreenGame : public Screen
+class GameScreen : public Screen
 {
 private:
 	WINDOW* hud;
@@ -9,10 +9,11 @@ private:
 	WINDOW* toolstip;
 
 public:
-	ScreenGame();
-	~ScreenGame();
+	GameScreen(IScreenManager& screen_manager);
+	~GameScreen();
 
 	void	initialize(void) override;
 	void	update(float delta_time) override;
 	void	render(void) override;
+	void	handle_input(InputHandler& input) override;
 };
