@@ -16,6 +16,7 @@ SOURCES = main.cpp \
 		entities/Player.cpp \
 		managers/GameStateManager.cpp \
 		screens/Screen.cpp \
+		screens/ToolsTip.cpp \
 		screens/ScreenManager.cpp \
 		screens/LobbyScreen.cpp \
 		screens/GameScreen.cpp

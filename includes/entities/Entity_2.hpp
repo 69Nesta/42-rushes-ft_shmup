@@ -24,7 +24,7 @@ private:
 	char		ship;
 
 public:
-	Entity(int x, int y, char ship, int health, int max_x, int max_y);
+	Entity(int x, int y, char _ship, int health, int max_x, int max_y);
 	~Entity();
 
 	char	get_ship();

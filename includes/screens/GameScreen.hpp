@@ -4,12 +4,17 @@
 #include "managers/GameStateManager.hpp"
 #include "entities/Player.hpp"
 
+#include "screens/ToolsTip.hpp"
+
+
 class GameScreen : public Screen
 {
 private:
 	WINDOW*	hud;
 	WINDOW*	game;
 	WINDOW*	toolstip;
+
+	ToolsTip	_tools_tip;
 
 	GameClock&			game_clock;
 	GameStateManager& 	game_state_manager;

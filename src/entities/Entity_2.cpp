@@ -1,11 +1,16 @@
 #include "entities/Entity_2.hpp"
 
-Entity::Entity(int x, int y, char ship, int health, int max_x, int max_y): ship(ship), health(health)
+Entity::Entity(int x, int y, char _ship, int health, int max_x, int max_y): 
+	ship(_ship),
+	health(health),
+	updated(true)
 {
 	this->pos.x = x;
 	this->pos.y = y;
 	this->last_pos.x = x;
 	this->last_pos.y = y;
+	this->max.x = max_x;
+	this->max.y = max_y;
 }
 
 Entity::~Entity()
@@ -50,6 +55,7 @@ Point2	Entity::get_pos()
 void	Entity::pos_has_been_updated()
 {
 	this->last_pos = this->pos;
+	this->updated = false;
 }
 
 
@@ -63,6 +69,7 @@ y |
 
 void	Entity::resize(int max_x, int max_y)
 {
+	this->updated = true;
 	this->max.x = max_x;
 	this->max.y = max_y;
 }
@@ -71,24 +78,40 @@ void	Entity::resize(int max_x, int max_y)
 void	Entity::up()
 {
 	this->last_pos = this->pos;
-	if (this->pos.y > 0)
+	if (this->pos.y > 1)
+	{
+		this->last_pos = this->pos;
 		this->pos.y -= 1;
+		this->updated = true;
+	}
 }
 
 void	Entity::left()
 {
-	if (this->pos.x > 0)
+	this->last_pos = this->pos;
+	if (this->pos.x > 1)
+	{
+		this->updated = true;
 		this->pos.x -= 1;
+	}
 }
 
 void	Entity::right()
 {
-	if (this->pos.x < this->max.x)
+	this->last_pos = this->pos;
+	if (this->pos.x < this->max.x - 2)
+	{
+		this->updated = true;
 		this->pos.x += 1;
+	}
 }
 
 void	Entity::down()
 {
-	if (this->pos.y < this->max.y)
+	this->last_pos = this->pos;
+	if (this->pos.y < this->max.y - 2)
+	{
+		this->updated = true;
 		this->pos.y += 1;
+	}
 }

@@ -48,7 +48,7 @@ void	Player::render(WINDOW *window)
 	if (this->updated)
 	{
 		mvwaddch(window, this->get_last_pos().y, this->get_last_pos().x, ' ');
-		mvwaddch(window, this->get_pos().y, this->get_pos().x, this->get_ship());
+		mvwaddch(window, this->get_pos().y, this->get_pos().x, '>');
 	}
 }
 

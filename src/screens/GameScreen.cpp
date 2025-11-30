@@ -4,7 +4,9 @@ GameScreen::GameScreen(IScreenManager& screen_manager, GameClock& game_clock, Ga
 	Screen(screen_manager, ScreenType::GAME),
 	game_clock(game_clock),
 	game_state_manager(game_state_manager),
-	player(10, 10, COLS, LINES - 4 - 3)
+	player(10, 10, COLS, LINES - 4 - 3),
+	toolstip(subwin(stdscr, 3, COLS, LINES - 3, 0)),
+	_tools_tip(this->toolstip)
 {
 	int		hud_h;
 	int		tooltips_h;
@@ -13,7 +15,8 @@ GameScreen::GameScreen(IScreenManager& screen_manager, GameClock& game_clock, Ga
 	tooltips_h = 3;
 	this->hud = subwin(stdscr, hud_h, COLS, 0, 0);
 	this->game = subwin(stdscr, LINES - hud_h - tooltips_h, COLS, hud_h, 0);
-	this->toolstip = subwin(stdscr, tooltips_h, COLS, LINES - tooltips_h, 0);
+	
+	// this->_tools_tip = ToolsTip(this->toolstip);
 }
 
 GameScreen::~GameScreen()
@@ -40,7 +43,9 @@ void	GameScreen::initialize(void)
 	erase();
 	box(this->hud, ACS_VLINE, ACS_HLINE);
 	box(this->game, ACS_VLINE, ACS_HLINE);
-	box(this->toolstip, ACS_VLINE, ACS_HLINE);
+	// box(this->toolstip, ACS_VLINE, ACS_HLINE);
+	this->_tools_tip.render();
+
 	wrefresh(this->hud);
 	wrefresh(this->game);
 	wrefresh(this->toolstip);
@@ -62,6 +67,8 @@ void	GameScreen::resize()
 	box(this->toolstip, ACS_VLINE, ACS_HLINE);
 
 	this->player.resize(COLS, LINES - 4 - 3);
+	this->player.render(this->game);
+	this->_tools_tip.render();
 
 	wrefresh(this->hud);
 	wrefresh(this->game);
@@ -81,7 +88,8 @@ void	GameScreen::render(void)
 	// mvwprintw(this->game, 1, COLS / 2 - 11/2, "FPS: %6.0f", this->game_clock.calculate_fps());
 	wrefresh(this->hud);
 	
-	this->player.render(this->game);
+	if (this->game)
+		this->player.render(this->game);
 	wrefresh(this->game);
 	// wrefresh(this->toolstip);
 	// render player
