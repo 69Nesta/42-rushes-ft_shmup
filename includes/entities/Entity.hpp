@@ -22,6 +22,7 @@ protected:
 
 private:
 	int			health;
+	int			max_health;
 	char		ship;
 
 public:
@@ -34,6 +35,7 @@ public:
 	void	set_ship(char c);
 
 	int		get_health();
+	int		get_max_health();
 	int		remove_health(int amount = 1);
 	int		add_health(int amount = 1);
 

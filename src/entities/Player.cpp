@@ -7,7 +7,7 @@ Player::Player(int x, int y, int max_x, int max_y, BulletsManager& bullets_manag
 	bullets_manager(bullets_manager),
 	last_ammo(0),
 	last_fire(0),
-	ammo(100)
+	ammo(MAX_AMMO)
 {
 }
 
@@ -45,6 +45,10 @@ void	Player::shoot()
 int		Player::get_ammo()
 {
 	return (this->ammo);
+}
+int		Player::get_max_ammo()
+{
+	return (this->MAX_AMMO);
 }
 
 void	Player::render(WINDOW *window)

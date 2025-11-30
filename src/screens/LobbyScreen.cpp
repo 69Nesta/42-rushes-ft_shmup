@@ -11,7 +11,7 @@ LobbyScreen::~LobbyScreen()
 {
 	if (this->window)
 	{
-		free(this->window);
+		delwin(this->window);
 		this->window = NULL;
 	}
 }

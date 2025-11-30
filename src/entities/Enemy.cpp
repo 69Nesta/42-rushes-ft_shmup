@@ -15,13 +15,6 @@ Enemy::~Enemy()
 {
 }
 
-// Enemy&	Enemy::operator=(const Enemy& other)
-// {
-// 	this->bullets_manager = other.bullets_manager;
-// 	this->last_movment = other.last_movment;
-// 	return (*this);
-// }
-
 void	Enemy::update(float duration_time)
 {
 	Duration elapsed_duration = Duration(duration_time);

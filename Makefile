@@ -25,6 +25,7 @@ SOURCES = main.cpp \
 		screens/ScreenManager.cpp \
 		screens/LobbyScreen.cpp \
 		screens/GameScreen.cpp \
+		screens/Background.cpp \
 		screens/EndScreen.cpp
 
 OBJECTS = $(addprefix $(OBJDIR)/, $(SOURCES:.cpp=.o))

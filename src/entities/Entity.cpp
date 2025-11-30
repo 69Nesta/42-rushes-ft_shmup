@@ -3,6 +3,7 @@
 Entity::Entity(int x, int y, char _ship, int health, int max_x, int max_y, EDirection direction): 
 	ship(_ship),
 	health(health),
+	max_health(health),
 	updated(true),
 	direction(direction)
 {
@@ -47,6 +48,11 @@ void	Entity::set_ship(char c)
 int		Entity::get_health()
 {
 	return (this->health);
+}
+
+int		Entity::get_max_health()
+{
+	return (this->max_health);
 }
 
 int		Entity::remove_health(int amount)

@@ -22,6 +22,7 @@ public:
 
 	void	update(float duration_time);
 	int		get_ammo();
+	int		get_max_ammo();
 	void	shoot(/* bulletsManager */);
 	void	handle_input(InputHandler& input);
 	void	render(WINDOW *window);

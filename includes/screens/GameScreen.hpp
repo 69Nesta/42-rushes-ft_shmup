@@ -9,6 +9,7 @@
 #include "managers/CollisionManager.hpp"
 
 #include "screens/ToolsTip.hpp"
+#include "screens/Background.hpp"
 
 #include <sstream>
 #include <string>
@@ -37,6 +38,8 @@ private:
 	CollisionManager	collision_manager;
 	
 	Player				player;
+
+	Background			background; // ajouté : gère le fond défilant
 
 public:
 	GameScreen(IScreenManager& screen_manager, GameClock& game_clock, GameStateManager& game_state_manager);
