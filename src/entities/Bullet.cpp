@@ -3,7 +3,7 @@
 using namespace std::chrono;
 
 Bullet::Bullet(int x, int y, int max_x, int max_y, EDirection direction): 
-	Entity(x, y, 20, '~', max_x, max_y, direction)
+	Entity(x, y, '-', 20, max_x, max_y, direction)
 {
 }
 
@@ -41,7 +41,7 @@ void	Bullet::render(WINDOW *window)
 	if (this->updated)
 	{
 		mvwaddch(window, this->get_last_pos().y, this->get_last_pos().x, ' ');
-		mvwaddch(window, this->get_pos().y, this->get_pos().x, '-');
+		mvwaddch(window, this->get_pos().y, this->get_pos().x, this->get_ship());
 	}
 }
 

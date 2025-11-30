@@ -14,5 +14,5 @@ public:
 	void	add_score(int value = 1);
 	void	loseLife(void);
 	void	setGameOver(void);
-
+	int		get_score();
 };

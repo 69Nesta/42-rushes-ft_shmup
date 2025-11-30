@@ -37,6 +37,7 @@ void	Player::shoot()
         this->ammo--;
         // logic
 		Bullet bullet(this->get_pos().x + 1, this->get_pos().y, this->max.x, this->max.y, this->direction);
+		bullet.set_ship('~');
 		bullets_manager.push_bullet(bullet);
     }
 }

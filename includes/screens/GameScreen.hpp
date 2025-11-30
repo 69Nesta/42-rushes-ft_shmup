@@ -10,6 +10,10 @@
 
 #include "screens/ToolsTip.hpp"
 
+#include <sstream>
+#include <string>
+#include <iostream>
+
 
 class GameScreen : public Screen
 {
@@ -41,6 +45,7 @@ public:
 	void	initialize(void) override;
 	void	update(float delta_time) override;
 	void	render(void) override;
+	void	refresh_hud(void);
 	void	handle_input(InputHandler& input) override;
 	void	resize();
 };

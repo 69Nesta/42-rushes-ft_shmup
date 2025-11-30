@@ -39,6 +39,11 @@ char	Entity::get_ship()
 	return (this->ship);
 }
 
+void	Entity::set_ship(char c)
+{
+	this->ship = c;
+}
+
 int		Entity::get_health()
 {
 	return (this->health);

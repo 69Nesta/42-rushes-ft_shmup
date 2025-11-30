@@ -31,6 +31,7 @@ public:
 	// Entity& operator=(const Entity& other);
 
 	char	get_ship();
+	void	set_ship(char c);
 
 	int		get_health();
 	int		remove_health(int amount = 1);

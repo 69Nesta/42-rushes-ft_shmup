@@ -11,7 +11,7 @@ GameScreen::GameScreen(IScreenManager& screen_manager, GameClock& game_clock, Ga
 	player(10, 10, COLS, LINES - HUD_HEIGHT - TOOLTIP_HEIGHT, bullet_manager),
 	toolstip(subwin(stdscr, TOOLTIP_HEIGHT, COLS, LINES - TOOLTIP_HEIGHT, 0)),
 	_tools_tip(this->toolstip),
-	collision_manager(bullet_manager, enemy_manager, player)
+	collision_manager(bullet_manager, enemy_manager, player, screen_manager)
 {}
 
 GameScreen::~GameScreen()
@@ -78,26 +78,34 @@ void	GameScreen::update(float delta_time)
 	{
 		Enemy enemy(COLS - 2, (rand() % (LINES - HUD_HEIGHT - TOOLTIP_HEIGHT - 2)) + 1, COLS, LINES - HUD_HEIGHT - TOOLTIP_HEIGHT, this->bullet_manager);
 		this->enemy_manager.push_enemy(enemy);
-		// this->enemy_manager;
 	}
-	// moves entities
-	// check collides
 	this->player.update(delta_time);
 	this->collision_manager.update(this->game);
 	this->enemy_manager.update(delta_time);
 	this->bullet_manager.update(delta_time);
 
+	// score
+	this->game_state_manager.add_score(1);
+
 }
 
 void	GameScreen::render(void)
 {
+	std::ostringstream oss;
+
+    // oss << "La valeur est " << value;
+	std::ostringstream	score;
+	score << "Score: " << this->game_state_manager.get_score();
+
 	mvwprintw(this->hud, 1, COLS / 2 - 11/2, "FPS: %3.0f", this->game_clock.calculate_fps());
-	// mvwprintw(this->game, 1, COLS / 2 - 11/2, "FPS: %6.0f", this->game_clock.calculate_fps());
 	mvwprintw(this->hud, 1, 1, "Ammos: %3d", player.get_ammo());
 	mvwprintw(this->hud, 2, 1, "Health: %3d", player.get_health());
-	mvwprintw(this->hud, 1, 20, "Enemy Count: %4zu", this->enemy_manager.size());
-	mvwprintw(this->hud, 2, 20, "Bullets Count: %4zu", this->bullet_manager.bullets.size());
-	
+	mvwprintw(this->hud, 1, COLS - score.str().length() - 1, "%s", score.str().c_str());
+
+	/* DEBUG */
+	// mvwprintw(this->hud, 1, 20, "Enemy Count: %4zu", this->enemy_manager.size());
+	// mvwprintw(this->hud, 2, 20, "Bullets Count: %4zu", this->bullet_manager.bullets.size());
+	wbkgd(this->hud, COLOR_PAIR(1));	
 	wrefresh(this->hud);
 	
 	if (this->game)
@@ -106,10 +114,7 @@ void	GameScreen::render(void)
 		this->bullet_manager.render();
 		this->enemy_manager.render();
 	}
+	wbkgd(this->game, COLOR_PAIR(1));
 	wrefresh(this->game);
-	// wrefresh(this->toolstip);
-	// render player
-	// render enemy
-	// render bullets
 }
 

@@ -1,8 +1,9 @@
 #include "managers/CollisionManager.hpp"
 
-CollisionManager::CollisionManager(BulletsManager &bullet_manager, EnemysManager &enemys_manager, Player &player):
+CollisionManager::CollisionManager(BulletsManager &bullet_manager, EnemysManager &enemys_manager, Player &player, IScreenManager& screen_manager):
 	bullet_manager(bullet_manager),
 	enemys_manager(enemys_manager),
+	screen_manager(screen_manager),
 	player(player)
 {
 }
@@ -35,12 +36,16 @@ void CollisionManager::update(WINDOW *window)
 			}
 		}
 	}
-
 	for (Enemy &enemy : this->enemys_manager.enemys)
 	{
 		if (this->player.get_pos().x == enemy.get_pos().x && this->player.get_pos().y == enemy.get_pos().y)
 		{
 			// next screen
+			this->screen_manager.change_screen(ScreenType::END);
 		}
+	}
+	if (player.get_health() == 0)
+	{
+		this->screen_manager.change_screen(ScreenType::END);
 	}
 }
