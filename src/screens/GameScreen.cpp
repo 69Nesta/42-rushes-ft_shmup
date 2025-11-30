@@ -103,8 +103,6 @@ void	GameScreen::render(void)
 	mvwprintw(this->hud, 1, COLS - score.str().length() - 1, "%s", score.str().c_str());
 
 	/* DEBUG */
-	// mvwprintw(this->hud, 1, 20, "Enemy Count: %4zu", this->enemy_manager.size());
-	// mvwprintw(this->hud, 2, 20, "Bullets Count: %4zu", this->bullet_manager.bullets.size());
 	wbkgd(this->hud, COLOR_PAIR(1));	
 	wrefresh(this->hud);
 	
