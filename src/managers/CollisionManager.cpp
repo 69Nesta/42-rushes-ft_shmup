@@ -30,7 +30,9 @@ void CollisionManager::update(WINDOW *window)
 				if (pos.x == this->enemys_manager.enemys[i_e].get_pos().x && pos.y == this->enemys_manager.enemys[i_e].get_pos().y)
 				{
 					mvwaddch(window, this->enemys_manager.enemys[i_e].get_last_pos().y, this->enemys_manager.enemys[i_e].get_last_pos().x, ' ');
+					mvwaddch(window, this->bullet_manager.bullets[i].get_last_pos().y, this->bullet_manager.bullets[i].get_last_pos().x, ' ');
 					this->enemys_manager.enemys.erase(this->enemys_manager.enemys.begin() + i_e);
+					this->bullet_manager.remove_bullet(i);
 					break;
 				}
 			}
