@@ -1,13 +1,25 @@
 TARGET = ft_shmup
 
 CXX = c++
-CXXFLAGS = -Wall -Wextra -std=gnu++2b -I includes 
+#CXXFLAGS = -Wall -Wextra -std=gnu++2b -I includes -g3
+CXXFLAGS = -std=gnu++2b -I includes -g3
 DEPFLAGS = -MMD -MP
 
-SRCDIR = .
+SRCDIR = src
 OBJDIR = .obj
 
-SOURCES = main.cpp frame.cpp
+SOURCES = main.cpp \
+		engine/Engine.cpp \
+		engine/GameClock.cpp \
+		engine/InputHandler.cpp \
+		entities/Entity_2.cpp \
+		entities/Player.cpp \
+		managers/GameStateManager.cpp \
+		screens/Screen.cpp \
+		screens/ToolsTip.cpp \
+		screens/ScreenManager.cpp \
+		screens/LobbyScreen.cpp \
+		screens/GameScreen.cpp
 
 OBJECTS = $(addprefix $(OBJDIR)/, $(SOURCES:.cpp=.o))
 DEPS = $(OBJECTS:.o=.d)
@@ -30,5 +42,10 @@ fclean: clean
 	rm -f $(TARGET)
 
 re: fclean all
+
+test: all
+	@echo
+	@echo
+	@valgrind --leak-check=full ./$(TARGET)
 
 .PHONY: all clean fclean re
