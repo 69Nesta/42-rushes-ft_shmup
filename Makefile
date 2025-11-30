@@ -12,6 +12,8 @@ SOURCES = main.cpp \
 		engine/Engine.cpp \
 		engine/GameClock.cpp \
 		engine/InputHandler.cpp \
+		entities/Entity_2.cpp \
+		entities/Player.cpp \
 		managers/GameStateManager.cpp \
 		screens/Screen.cpp \
 		screens/ScreenManager.cpp \

@@ -3,7 +3,8 @@
 GameScreen::GameScreen(IScreenManager& screen_manager, GameClock& game_clock, GameStateManager& game_state_manager): 
 	Screen(screen_manager, ScreenType::GAME),
 	game_clock(game_clock),
-	game_state_manager(game_state_manager)
+	game_state_manager(game_state_manager),
+	player(10, 10, COLS, LINES - 4 - 3)
 {
 	int		hud_h;
 	int		tooltips_h;
@@ -49,6 +50,8 @@ void	GameScreen::handle_input(InputHandler& input)
 {
 	if (input.key_is_pressed(410))
 		this->resize();
+
+	this->player.handle_input(input);
 }
 
 void	GameScreen::resize()
@@ -57,6 +60,9 @@ void	GameScreen::resize()
 	box(this->hud, ACS_VLINE, ACS_HLINE);
 	box(this->game, ACS_VLINE, ACS_HLINE);
 	box(this->toolstip, ACS_VLINE, ACS_HLINE);
+
+	this->player.resize(COLS, LINES - 4 - 3);
+
 	wrefresh(this->hud);
 	wrefresh(this->game);
 	wrefresh(this->toolstip);
@@ -66,6 +72,7 @@ void	GameScreen::update(float delta_time)
 {
 	// moves entities
 	// check collides
+	this->player.update(delta_time);
 }
 
 void	GameScreen::render(void)
@@ -73,7 +80,9 @@ void	GameScreen::render(void)
 	mvwprintw(this->hud, 1, COLS / 2 - 11/2, "FPS: %6.0f", this->game_clock.calculate_fps());
 	// mvwprintw(this->game, 1, COLS / 2 - 11/2, "FPS: %6.0f", this->game_clock.calculate_fps());
 	wrefresh(this->hud);
-	// wrefresh(this->game)s;
+	
+	this->player.render(this->game);
+	wrefresh(this->game);
 	// wrefresh(this->toolstip);
 	// render player
 	// render enemy
