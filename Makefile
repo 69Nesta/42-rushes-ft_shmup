@@ -12,10 +12,12 @@ SOURCES = main.cpp \
 		engine/Engine.cpp \
 		engine/GameClock.cpp \
 		engine/InputHandler.cpp \
-		entities/Entity_2.cpp \
+		entities/Entity.cpp \
 		entities/Player.cpp \
+		entities/Enemy.cpp \
 		entities/Bullet.cpp \
 		managers/BulletsManager.cpp \
+		managers/EnemysManager.cpp \
 		managers/GameStateManager.cpp \
 		screens/Screen.cpp \
 		screens/ToolsTip.cpp \

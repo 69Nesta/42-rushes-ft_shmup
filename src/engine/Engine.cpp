@@ -1,7 +1,9 @@
 #include "engine/Engine.hpp"
 
+
 Engine::Engine(): is_running(true), screen_manager(this->input_handler)
 {
+	srand(time(0));
 	initscr();
 	noecho();
 	curs_set(0);

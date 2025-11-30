@@ -7,6 +7,7 @@ GameScreen::GameScreen(IScreenManager& screen_manager, GameClock& game_clock, Ga
 	hud(subwin(stdscr, HUD_HEIGHT, COLS, 0, 0)),
 	game(subwin(stdscr, LINES - HUD_HEIGHT - TOOLTIP_HEIGHT, COLS, HUD_HEIGHT, 0)),
 	bullet_manager(game),
+	enemy_manager(game),
 	player(10, 10, COLS, LINES - HUD_HEIGHT - TOOLTIP_HEIGHT, bullet_manager),
 	toolstip(subwin(stdscr, TOOLTIP_HEIGHT, COLS, LINES - TOOLTIP_HEIGHT, 0)),
 	_tools_tip(this->toolstip)
@@ -61,7 +62,7 @@ void	GameScreen::resize()
 	this->player.render(this->game);
 	this->_tools_tip.render();
 	this->bullet_manager.resize(COLS, LINES - HUD_HEIGHT - TOOLTIP_HEIGHT);
-
+	this->enemy_manager.resize(COLS, LINES - HUD_HEIGHT - TOOLTIP_HEIGHT);
 	wrefresh(this->hud);
 	wrefresh(this->game);
 	wrefresh(this->toolstip);
@@ -69,10 +70,18 @@ void	GameScreen::resize()
 
 void	GameScreen::update(float delta_time)
 {
+	if (rand() % 1001 <= 40)
+	{
+		
+		Enemy enemy(COLS - 3, (rand() % (LINES - HUD_HEIGHT - TOOLTIP_HEIGHT - 5)) + 2, COLS, LINES - HUD_HEIGHT - TOOLTIP_HEIGHT, this->bullet_manager);
+		this->enemy_manager.push_enemy(enemy);
+		// this->enemy_manager;
+	}
 	// moves entities
 	// check collides
 	this->player.update(delta_time);
 	this->bullet_manager.update(delta_time);
+	this->enemy_manager.update(delta_time);
 }
 
 void	GameScreen::render(void)
@@ -88,6 +97,7 @@ void	GameScreen::render(void)
 	{
 		this->player.render(this->game);
 		this->bullet_manager.render();
+		this->enemy_manager.render();
 	}
 	wrefresh(this->game);
 	// wrefresh(this->toolstip);

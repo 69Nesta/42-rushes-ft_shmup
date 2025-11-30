@@ -3,6 +3,7 @@
 #include "engine/GameClock.hpp"
 #include "managers/GameStateManager.hpp"
 #include "managers/BulletsManager.hpp"
+#include "managers/EnemysManager.hpp"
 #include "entities/Player.hpp"
 
 #include "screens/ToolsTip.hpp"
@@ -25,6 +26,7 @@ private:
 	GameStateManager& 	game_state_manager;
 	
 	BulletsManager		bullet_manager;
+	EnemysManager		enemy_manager;
 	
 	Player				player;
 

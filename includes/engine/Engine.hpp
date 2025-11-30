@@ -5,6 +5,9 @@
 #include "screens/GameScreen.hpp"
 #include "screens/LobbyScreen.hpp"
 #include "managers/GameStateManager.hpp"
+#include <cstdlib>
+#include <ctime>
+
 
 class Engine
 {

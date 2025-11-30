@@ -1,5 +1,5 @@
 #pragma once
-#include "entities/Entity_2.hpp"
+#include "entities/Entity.hpp"
 #include "managers/BulletsManager.hpp"
 #include "engine/InputHandler.hpp"
 

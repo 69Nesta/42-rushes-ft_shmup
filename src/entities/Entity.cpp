@@ -1,49 +1,118 @@
 #include "entities/Entity.hpp"
 
-Entity	init_enemy(unsigned int cols, unsigned int lines)
+Entity::Entity(int x, int y, char _ship, int health, int max_x, int max_y, EDirection direction): 
+	ship(_ship),
+	health(health),
+	updated(true),
+	direction(direction)
 {
-	return (Ennemy(cols, lines));
+	this->pos.x = x;
+	this->pos.y = y;
+	this->last_pos.x = x;
+	this->last_pos.y = y;
+	this->max.x = max_x;
+	this->max.y = max_y;
 }
 
-
-Entity	init_player(unsigned int cols, unsigned int lines)
+Entity::~Entity()
 {
-	return (Player(cols, lines));
-}
-
-unsigned int	Entity::get_lines()
-{
-	return (Entity::lines);
-}
-
-unsigned int	Entity::get_cols()
-{
-	return (Entity::cols);
 }
 
 char	Entity::get_ship()
 {
-	return (Entity::ship);
+	return (this->ship);
 }
 
-void	Entity::increment_entity_lines()
+int		Entity::get_health()
 {
-	Entity::lines -= 1;
+	return (this->health);
 }
 
-void	Entity::decrement_entity_lines()
+int		Entity::remove_health(int amount)
 {
-	Entity::lines += 1;
+	if (this->health - amount >= 0)
+		this->health -= amount;
+	else if (health > 0)
+		this->health = 0;
+	return (this->health);
+}
+int		Entity::add_health(int amount)
+{
+	if (this->health >= 0)
+		this->health += amount;
+	return (this->health);
 }
 
-Projectile   Player::shoot(Player player)
+Point2	Entity::get_last_pos()
 {
-	Projectile projectile(player.cols, player.lines, 1);
-	return (projectile);
-}	
+	return (this->last_pos);
+}
 
-Projectile	Ennemy::shoot(Ennemy ennemy)
+Point2	Entity::get_pos()
 {
-	Projectile projectile(ennemy.cols, ennemy.lines, -1);
-	return (projectile);
+	return (this->pos);
+}
+
+void	Entity::pos_has_been_updated()
+{
+	this->last_pos = this->pos;
+	this->updated = false;
+}
+
+
+/*
+   x
+  0______
+y |
+  |
+
+*/
+
+void	Entity::resize(int max_x, int max_y)
+{
+	this->updated = true;
+	this->max.x = max_x;
+	this->max.y = max_y;
+}
+
+
+void	Entity::up()
+{
+	this->last_pos = this->pos;
+	if (this->pos.y > 1)
+	{
+		this->last_pos = this->pos;
+		this->pos.y -= 1;
+		this->updated = true;
+	}
+}
+
+void	Entity::left()
+{
+	this->last_pos = this->pos;
+	if (this->pos.x > 1)
+	{
+		this->updated = true;
+		this->pos.x -= 1;
+	}
+}
+
+void	Entity::right()
+{
+	this->last_pos = this->pos;
+	if (this->pos.x < this->max.x - 2)
+	{
+		this->updated = true;
+		this->pos.x += 1;
+	}
+}
+
+void	Entity::down()
+{
+	this->last_pos = this->pos;
+	if (this->pos.y < this->max.y - 2)
+	{
+		this->updated = true;
+		this->pos.y += 1;
+	}
 }

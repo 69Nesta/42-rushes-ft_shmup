@@ -1,4 +1,4 @@
-#include "entities/Entity_2.hpp"
+#include "entities/Entity.hpp"
 
 Entity::Entity(int x, int y, char _ship, int health, int max_x, int max_y): 
 	ship(_ship),

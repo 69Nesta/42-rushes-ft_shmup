@@ -3,7 +3,7 @@
 using namespace std::chrono;
 
 Player::Player(int x, int y, int max_x, int max_y, BulletsManager& bullets_manager): 
-	Entity(x, y, 20, '>', max_x, max_y, EDirection::RIGHT),
+	Entity(x, y, '>', 20, max_x, max_y, EDirection::RIGHT),
 	bullets_manager(bullets_manager),
 	last_ammo(0),
 	last_fire(0),
@@ -51,7 +51,7 @@ void	Player::render(WINDOW *window)
 	if (this->updated)
 	{
 		mvwaddch(window, this->get_last_pos().y, this->get_last_pos().x, ' ');
-		mvwaddch(window, this->get_pos().y, this->get_pos().x, '>');
+		mvwaddch(window, this->get_pos().y, this->get_pos().x, this->get_ship());
 	}
 }
 

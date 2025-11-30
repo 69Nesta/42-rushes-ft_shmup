@@ -1,13 +1,22 @@
 #pragma once
-#include "entities/Entity_2.hpp"
+#include "entities/Entity.hpp"
+#include "managers/BulletsManager.hpp"
 
-class Player : public Entity
+class Enemy : public Entity
 {
 private:
-	TimePoint	last_fire;
-public:
-	Player(int x, int y, int max_x, int max_y);
-	~Player();
+    static constexpr Duration MOVEMENT_SPEED = std::chrono::milliseconds(40);
+	Duration	last_movment;
+	BulletsManager& bullets_manager;
 
-	void	shoot(/* bulletsManager */);
+public:
+	Enemy(int x, int y, int max_x, int max_y, BulletsManager& bullets_manager);
+	~Enemy();
+
+	Enemy& operator=(const Enemy& other);
+
+	void	update(float duration_time);
+	void	shoot();
+	bool	to_delete();
+	void	render(WINDOW *window);
 };
