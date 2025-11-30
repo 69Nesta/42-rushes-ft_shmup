@@ -18,6 +18,22 @@ Entity::~Entity()
 {
 }
 
+// Entity& Entity::operator=(const Entity& other)
+// {
+//     // if (this != &other)
+//     // {
+//     //     this->updated = other.updated;
+//     //     this->direction = other.direction;
+//     //     this->pos = other.pos;
+//     //     this->last_pos = other.last_pos;
+//     //     this->max = other.max;
+        
+//     //     this->health = other.health;
+//     //     this->ship = other.ship;
+//     // }
+//     return *this;
+// }
+
 char	Entity::get_ship()
 {
 	return (this->ship);

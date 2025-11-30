@@ -39,6 +39,9 @@ void	GameScreen::initialize(void)
 	box(this->game, ACS_VLINE, ACS_HLINE);
 	this->_tools_tip.render();
 
+	// Enemy enemy(COLS - 2, (rand() % (LINES - HUD_HEIGHT - TOOLTIP_HEIGHT - 2)) + 1, COLS, LINES - HUD_HEIGHT - TOOLTIP_HEIGHT, this->bullet_manager);
+	// this->enemy_manager.push_enemy(enemy);
+	
 	wrefresh(this->hud);
 	wrefresh(this->game);
 	wrefresh(this->toolstip);
@@ -73,7 +76,7 @@ void	GameScreen::update(float delta_time)
 	if (rand() % 1001 <= 40)
 	{
 		
-		Enemy enemy(COLS - 3, (rand() % (LINES - HUD_HEIGHT - TOOLTIP_HEIGHT - 5)) + 2, COLS, LINES - HUD_HEIGHT - TOOLTIP_HEIGHT, this->bullet_manager);
+		Enemy enemy(COLS - 2, (rand() % (LINES - HUD_HEIGHT - TOOLTIP_HEIGHT - 2)) + 1, COLS, LINES - HUD_HEIGHT - TOOLTIP_HEIGHT, this->bullet_manager);
 		this->enemy_manager.push_enemy(enemy);
 		// this->enemy_manager;
 	}
@@ -89,7 +92,9 @@ void	GameScreen::render(void)
 	mvwprintw(this->hud, 1, COLS / 2 - 11/2, "FPS: %3.0f", this->game_clock.calculate_fps());
 	// mvwprintw(this->game, 1, COLS / 2 - 11/2, "FPS: %6.0f", this->game_clock.calculate_fps());
 	mvwprintw(this->hud, 1, 1, "Ammos: %3d", player.get_ammo());
-	mvwprintw(this->hud, 2, 1, "Health: %3d", player.get_health());
+	// mvwprintw(this->hud, 2, 1, "Health: %3d", player.get_health());
+	// mvwprintw(this->hud, 2, 1, "Enemy Count: %4zu", this->enemy_manager.size());
+	mvwprintw(this->hud, 2, 1, "Bullets Count: %4zu", this->bullet_manager.bullets.size());
 	
 	wrefresh(this->hud);
 	

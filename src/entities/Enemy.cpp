@@ -17,6 +17,8 @@ Enemy::~Enemy()
 
 Enemy&	Enemy::operator=(const Enemy& other)
 {
+	this->bullets_manager = other.bullets_manager;
+	this->last_movment = other.last_movment;
 	return (*this);
 }
 
@@ -37,8 +39,11 @@ void	Enemy::update(float duration_time)
 
 void	Enemy::shoot()
 {
-	Bullet bullet(this->get_pos().x - 1, this->get_pos().y, this->max.x, this->max.y, this->direction);
-	bullets_manager.push_bullet(bullet);
+	if (this->get_pos().x > 1)
+	{
+		Bullet bullet(this->get_pos().x - 1, this->get_pos().y, this->max.x, this->max.y, this->direction);
+		bullets_manager.push_bullet(bullet);
+	}
 }
 
 void	Enemy::render(WINDOW *window)
@@ -54,27 +59,3 @@ bool	Enemy::to_delete()
 {
 	return (this->get_pos().x == 1);
 }
-
-// void	Enemy::handle_input(InputHandler& input)
-// {
-// 	switch (input.get_current_key())
-// 	{
-// 		case KEY_UP:
-// 			this->up();
-// 			break;
-// 		case KEY_LEFT:
-// 			this->left();
-// 			break;
-// 		case KEY_RIGHT:
-// 			this->right();
-// 			break;
-// 		case KEY_DOWN:
-// 			this->down();
-// 			break;
-// 		case ' ':
-// 			this->shoot();
-// 			break;
-// 		default:
-// 			break;
-// 	}
-// }

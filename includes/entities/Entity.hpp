@@ -28,6 +28,8 @@ public:
 	Entity(int x, int y, char _ship, int health, int max_x, int max_y, EDirection direction);
 	~Entity();
 
+	// Entity& operator=(const Entity& other);
+
 	char	get_ship();
 
 	int		get_health();
