@@ -10,11 +10,11 @@ GameScreen::GameScreen(IScreenManager& screen_manager, GameClock& game_clock, Ga
 {
 	int		hud_h;
 	int		tooltips_h;
-
+	
 	hud_h = 4;
 	tooltips_h = 3;
 	this->hud = subwin(stdscr, hud_h, COLS, 0, 0);
-	this->game = subwin(stdscr, LINES - hud_h - tooltips_h, COLS, hud_h, 0);
+	this->game = subwin(stdscr, LINES - hud_h - tooltips_h, COLS, hud_h, 0);;
 	
 	// this->_tools_tip = ToolsTip(this->toolstip);
 }
@@ -45,6 +45,11 @@ void	GameScreen::initialize(void)
 	box(this->game, ACS_VLINE, ACS_HLINE);
 	// box(this->toolstip, ACS_VLINE, ACS_HLINE);
 	this->_tools_tip.render();
+	start_color();
+	init_pair(1, COLOR_YELLOW, COLOR_BLACK);
+	wbkgd(this->game, COLOR_PAIR(1));
+	wbkgd(this->hud, COLOR_PAIR(1));
+
 
 	wrefresh(this->hud);
 	wrefresh(this->game);

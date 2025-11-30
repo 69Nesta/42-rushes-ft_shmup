@@ -36,8 +36,11 @@ void	LobbyScreen::resize()
 	erase();
 	std::string start_msg = "Press [Space] to start";
 
+	start_color();
+	init_pair(1, COLOR_YELLOW, COLOR_BLACK);
 	mvwprintw(this->window, LINES / 2, (COLS / 2) - start_msg.length() / 2, start_msg.c_str());
 	box(this->window, ACS_VLINE, ACS_HLINE);
+	wbkgd(this->window, COLOR_PAIR(1));
 	wrefresh(this->window);
 }
 
