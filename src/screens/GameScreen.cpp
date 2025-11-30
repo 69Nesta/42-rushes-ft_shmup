@@ -2,15 +2,15 @@
 
 GameScreen::GameScreen(IScreenManager& screen_manager, GameClock& game_clock, GameStateManager& game_state_manager): 
     Screen(screen_manager, ScreenType::GAME),
-    game_clock(game_clock),
-    game_state_manager(game_state_manager),
     hud(newwin(HUD_HEIGHT, COLS, 0, 0)),
     game(newwin(LINES - HUD_HEIGHT - TOOLTIP_HEIGHT, COLS, HUD_HEIGHT, 0)),
+    toolstip(newwin(TOOLTIP_HEIGHT, COLS, LINES - TOOLTIP_HEIGHT, 0)),
+    _tools_tip(this->toolstip),
+    game_clock(game_clock),
+    game_state_manager(game_state_manager),
     bullet_manager(game),
     enemy_manager(game),
     player(10, 10, COLS, LINES - HUD_HEIGHT - TOOLTIP_HEIGHT, bullet_manager),
-    toolstip(newwin(TOOLTIP_HEIGHT, COLS, LINES - TOOLTIP_HEIGHT, 0)),
-    _tools_tip(this->toolstip),
     collision_manager(bullet_manager, enemy_manager, player, screen_manager),
     background(COLS, LINES - HUD_HEIGHT - TOOLTIP_HEIGHT, 6.0f)
 {}

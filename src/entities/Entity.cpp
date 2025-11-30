@@ -1,11 +1,11 @@
 #include "entities/Entity.hpp"
 
 Entity::Entity(int x, int y, char _ship, int health, int max_x, int max_y, EDirection direction): 
-	ship(_ship),
+	updated(true),
+	direction(direction),
 	health(health),
 	max_health(health),
-	updated(true),
-	direction(direction)
+	ship(_ship)
 {
 	this->pos.x = x;
 	this->pos.y = y;

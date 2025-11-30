@@ -5,8 +5,8 @@ using namespace std::chrono;
 
 Enemy::Enemy(int x, int y, int max_x, int max_y, BulletsManager& bullets_manager): 
 	Entity(x, y, '@', 1, max_x, max_y, EDirection::LEFT),
-	bullets_manager(&bullets_manager),
-	last_movment(0)
+	last_movment(0),
+	bullets_manager(&bullets_manager)
 {
 	
 }

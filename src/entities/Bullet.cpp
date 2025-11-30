@@ -14,15 +14,8 @@ Bullet::~Bullet()
 void	Bullet::update(float duration_time)
 {
 	Duration elapsed_duration = Duration(duration_time);
+	(void)elapsed_duration;
 
-	// this->last_ammo += elapsed_duration;
-	// this->last_fire += elapsed_duration;
-
-	// if (this->last_ammo >= this->MAX_FIRE_RATE)
-	// {
-	//     this->last_ammo = Duration(0);
-	//     this->ammo = std::min(this->ammo + 1, MAX_AMMO);
-	// }
 	switch (this->direction)
 	{
 		case EDirection::LEFT:

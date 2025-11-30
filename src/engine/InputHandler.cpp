@@ -1,6 +1,9 @@
 #include "engine/InputHandler.hpp"
 
-InputHandler::InputHandler() : currentKey(0), previousKey(0), initialized(false)
+InputHandler::InputHandler(): 
+	initialized(false),
+	currentKey(0),
+	previousKey(0)
 {
 }
 

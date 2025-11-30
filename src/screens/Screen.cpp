@@ -5,10 +5,6 @@ Screen::Screen(IScreenManager& screen_manager, ScreenType type): screen_manager(
 	this->type = type;
 }
 
-Screen::~Screen()
-{
-}
-
 void	Screen::pause()
 {
 	this->status = ScreenStatus::PAUSED;

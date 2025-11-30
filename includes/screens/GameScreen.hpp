@@ -35,11 +35,11 @@ private:
 	BulletsManager		bullet_manager;
 	EnemysManager		enemy_manager;
 
-	CollisionManager	collision_manager;
-	
 	Player				player;
 
-	Background			background; // ajouté : gère le fond défilant
+	CollisionManager	collision_manager;
+
+	Background			background;
 
 public:
 	GameScreen(IScreenManager& screen_manager, GameClock& game_clock, GameStateManager& game_state_manager);

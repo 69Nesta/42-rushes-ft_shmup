@@ -12,8 +12,8 @@ GameClock::GameClock() :
 	fixed_times_step(duration<double>(1.0 / 60.0)), // Pour la physique
 	target_frame_time(duration<double>(1.0 / 60.0)), // 60 FPS
 	accumulated_time(0),
-	frame_count(0),
-	is_paused(false)
+	is_paused(false),
+	frame_count(0)
 {
 }
 

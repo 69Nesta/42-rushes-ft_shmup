@@ -20,7 +20,7 @@ EndScreen::~EndScreen()
 
 void	EndScreen::update(float delta_time)
 {
-
+    (void)delta_time;
 }
 
 void	EndScreen::render(void)

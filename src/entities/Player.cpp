@@ -4,10 +4,10 @@ using namespace std::chrono;
 
 Player::Player(int x, int y, int max_x, int max_y, BulletsManager& bullets_manager): 
 	Entity(x, y, '>', 20, max_x, max_y, EDirection::RIGHT),
-	bullets_manager(bullets_manager),
+	ammo(MAX_AMMO),
 	last_ammo(0),
 	last_fire(0),
-	ammo(MAX_AMMO)
+	bullets_manager(bullets_manager)
 {
 }
 

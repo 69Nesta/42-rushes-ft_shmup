@@ -1,9 +1,8 @@
 #include "managers/GameStateManager.hpp"
 
 GameStateManager::GameStateManager():
-	lives(1),
 	score(0),
-	gameOver(false)
+	lives(1)
 {
 }
 
@@ -30,9 +29,4 @@ void	GameStateManager::loseLife()
 {
 	if (lives > 0)
 		this->lives -= 1;
-}
-
-void	GameStateManager::setGameOver()
-{
-	
 }

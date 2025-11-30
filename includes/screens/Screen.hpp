@@ -20,7 +20,7 @@ private:
 
 public:
 	Screen(IScreenManager& screen_manager, ScreenType type);
-	~Screen(void);
+	virtual ~Screen() = default;
 
 	virtual	void	initialize(void) = 0;
 	virtual void	update(float delta_time) = 0;

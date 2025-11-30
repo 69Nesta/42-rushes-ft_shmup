@@ -1,8 +1,8 @@
 TARGET = ft_shmup
 
 CXX = c++
-#CXXFLAGS = -Wall -Wextra -std=gnu++2b -I includes -g3
-CXXFLAGS = -std=gnu++2b -I includes -g3
+CXXFLAGS = -Wall -Wextra -std=gnu++2b -I includes
+# CXXFLAGS = -std=gnu++2b -I includes -g3
 DEPFLAGS = -MMD -MP
 
 SRCDIR = src

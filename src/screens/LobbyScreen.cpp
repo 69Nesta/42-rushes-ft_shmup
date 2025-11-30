@@ -4,6 +4,7 @@
 LobbyScreen::LobbyScreen(IScreenManager& screen_manager, GameStateManager &game_state):
 	Screen(screen_manager, ScreenType::LOBBY)
 {
+	(void)game_state;
 	this->window = subwin(stdscr, LINES, COLS, 0, 0);
 }
 
@@ -18,7 +19,7 @@ LobbyScreen::~LobbyScreen()
 
 void	LobbyScreen::update(float delta_time)
 {
-
+	(void)delta_time;
 }
 
 void	LobbyScreen::render(void)
