@@ -2,6 +2,7 @@
 #include "Screen.hpp"
 #include "engine/GameClock.hpp"
 #include "managers/GameStateManager.hpp"
+#include "managers/BulletsManager.hpp"
 #include "entities/Player.hpp"
 
 #include "screens/ToolsTip.hpp"
@@ -9,6 +10,10 @@
 
 class GameScreen : public Screen
 {
+protected:
+	static const int	HUD_HEIGHT = 4;
+	static const int	TOOLTIP_HEIGHT = 3;
+
 private:
 	WINDOW*	hud;
 	WINDOW*	game;
@@ -18,6 +23,8 @@ private:
 
 	GameClock&			game_clock;
 	GameStateManager& 	game_state_manager;
+	
+	BulletsManager		bullet_manager;
 	
 	Player				player;
 

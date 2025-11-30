@@ -1,4 +1,5 @@
 #pragma once
+#include "EDirection.hpp"
 #include <chrono>
 #include <vector>
 
@@ -14,17 +15,17 @@ protected:
 	using TimePoint = std::chrono::time_point<Clock>;
     using Duration = std::chrono::duration<float>;
 	bool		updated;
-
-private:
-
+	EDirection	direction;
 	Point2		pos;
 	Point2		last_pos;
 	Point2		max;
+
+private:
 	int			health;
 	char		ship;
 
 public:
-	Entity(int x, int y, char _ship, int health, int max_x, int max_y);
+	Entity(int x, int y, char _ship, int health, int max_x, int max_y, EDirection direction);
 	~Entity();
 
 	char	get_ship();

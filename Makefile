@@ -14,6 +14,8 @@ SOURCES = main.cpp \
 		engine/InputHandler.cpp \
 		entities/Entity_2.cpp \
 		entities/Player.cpp \
+		entities/Bullet.cpp \
+		managers/BulletsManager.cpp \
 		managers/GameStateManager.cpp \
 		screens/Screen.cpp \
 		screens/ToolsTip.cpp \
