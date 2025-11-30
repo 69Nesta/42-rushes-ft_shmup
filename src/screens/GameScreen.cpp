@@ -10,7 +10,8 @@ GameScreen::GameScreen(IScreenManager& screen_manager, GameClock& game_clock, Ga
 	enemy_manager(game),
 	player(10, 10, COLS, LINES - HUD_HEIGHT - TOOLTIP_HEIGHT, bullet_manager),
 	toolstip(subwin(stdscr, TOOLTIP_HEIGHT, COLS, LINES - TOOLTIP_HEIGHT, 0)),
-	_tools_tip(this->toolstip)
+	_tools_tip(this->toolstip),
+	collision_manager(bullet_manager, enemy_manager, player)
 {}
 
 GameScreen::~GameScreen()
@@ -75,7 +76,6 @@ void	GameScreen::update(float delta_time)
 {
 	if (rand() % 1001 <= 40)
 	{
-		
 		Enemy enemy(COLS - 2, (rand() % (LINES - HUD_HEIGHT - TOOLTIP_HEIGHT - 2)) + 1, COLS, LINES - HUD_HEIGHT - TOOLTIP_HEIGHT, this->bullet_manager);
 		this->enemy_manager.push_enemy(enemy);
 		// this->enemy_manager;
@@ -83,8 +83,10 @@ void	GameScreen::update(float delta_time)
 	// moves entities
 	// check collides
 	this->player.update(delta_time);
-	this->bullet_manager.update(delta_time);
+	this->collision_manager.update(this->game);
 	this->enemy_manager.update(delta_time);
+	this->bullet_manager.update(delta_time);
+
 }
 
 void	GameScreen::render(void)
@@ -92,9 +94,9 @@ void	GameScreen::render(void)
 	mvwprintw(this->hud, 1, COLS / 2 - 11/2, "FPS: %3.0f", this->game_clock.calculate_fps());
 	// mvwprintw(this->game, 1, COLS / 2 - 11/2, "FPS: %6.0f", this->game_clock.calculate_fps());
 	mvwprintw(this->hud, 1, 1, "Ammos: %3d", player.get_ammo());
-	// mvwprintw(this->hud, 2, 1, "Health: %3d", player.get_health());
-	// mvwprintw(this->hud, 2, 1, "Enemy Count: %4zu", this->enemy_manager.size());
-	mvwprintw(this->hud, 2, 1, "Bullets Count: %4zu", this->bullet_manager.bullets.size());
+	mvwprintw(this->hud, 2, 1, "Health: %3d", player.get_health());
+	mvwprintw(this->hud, 1, 20, "Enemy Count: %4zu", this->enemy_manager.size());
+	mvwprintw(this->hud, 2, 20, "Bullets Count: %4zu", this->bullet_manager.bullets.size());
 	
 	wrefresh(this->hud);
 	

@@ -7,7 +7,7 @@ class Player : public Entity
 {
 private:
 	static constexpr Duration MAX_FIRE_RATE = std::chrono::milliseconds(100);
-    static constexpr Duration AMMO_REGENERATION_RATE = std::chrono::milliseconds(600);
+    static constexpr Duration AMMO_REGENERATION_RATE = std::chrono::milliseconds(0);
     static constexpr int MAX_AMMO = 10;
 
 	int			ammo;

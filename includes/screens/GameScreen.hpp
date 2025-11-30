@@ -6,6 +6,8 @@
 #include "managers/EnemysManager.hpp"
 #include "entities/Player.hpp"
 
+#include "managers/CollisionManager.hpp"
+
 #include "screens/ToolsTip.hpp"
 
 
@@ -27,6 +29,8 @@ private:
 	
 	BulletsManager		bullet_manager;
 	EnemysManager		enemy_manager;
+
+	CollisionManager	collision_manager;
 	
 	Player				player;
 

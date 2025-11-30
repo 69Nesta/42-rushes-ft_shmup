@@ -10,14 +10,15 @@ private:
 	WINDOW	*window;
 	
 public:
+	// std::vector<Enemy>	enemys;
 	// std::deque<Enemy> enemys;
-	std::vector<Enemy> enemys;
+	std::vector<Enemy>	enemys;
 
 	EnemysManager(WINDOW *window);
 	~EnemysManager();
 
 	void	push_enemy(Enemy& enemy);
-	void	pop_enemy();
+	void	pop_enemy(int index);
 	void	update(float delta_time);
 	void	render();
 

@@ -5,7 +5,7 @@ using namespace std::chrono;
 
 Enemy::Enemy(int x, int y, int max_x, int max_y, BulletsManager& bullets_manager): 
 	Entity(x, y, '@', 1, max_x, max_y, EDirection::LEFT),
-	bullets_manager(bullets_manager),
+	bullets_manager(&bullets_manager),
 	last_movment(0)
 {
 	
@@ -15,12 +15,12 @@ Enemy::~Enemy()
 {
 }
 
-Enemy&	Enemy::operator=(const Enemy& other)
-{
-	this->bullets_manager = other.bullets_manager;
-	this->last_movment = other.last_movment;
-	return (*this);
-}
+// Enemy&	Enemy::operator=(const Enemy& other)
+// {
+// 	this->bullets_manager = other.bullets_manager;
+// 	this->last_movment = other.last_movment;
+// 	return (*this);
+// }
 
 void	Enemy::update(float duration_time)
 {
@@ -39,15 +39,16 @@ void	Enemy::update(float duration_time)
 
 void	Enemy::shoot()
 {
-	if (this->get_pos().x > 1)
+	if (this->get_pos().x > 2)
 	{
-		Bullet bullet(this->get_pos().x - 1, this->get_pos().y, this->max.x, this->max.y, this->direction);
-		bullets_manager.push_bullet(bullet);
+		Bullet bullet(this->get_pos().x - 2, this->get_pos().y, this->max.x, this->max.y, this->direction);
+		(*bullets_manager).push_bullet(bullet);
 	}
 }
 
 void	Enemy::render(WINDOW *window)
 {
+	//  && this->max.x - 1 != this->get_pos().x && this->max.x - 1 != this->get_last_pos().x
 	if (this->updated)
 	{
 		mvwaddch(window, this->get_last_pos().y, this->get_last_pos().x, ' ');

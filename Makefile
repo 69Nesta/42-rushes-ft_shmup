@@ -18,6 +18,7 @@ SOURCES = main.cpp \
 		entities/Bullet.cpp \
 		managers/BulletsManager.cpp \
 		managers/EnemysManager.cpp \
+		managers/CollisionManager.cpp \
 		managers/GameStateManager.cpp \
 		screens/Screen.cpp \
 		screens/ToolsTip.cpp \

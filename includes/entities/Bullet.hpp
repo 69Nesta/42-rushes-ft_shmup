@@ -5,7 +5,7 @@
 class Bullet : public Entity
 {
 private:
-	static constexpr Duration SPEED = std::chrono::milliseconds(10);
+	static constexpr Duration SPEED = std::chrono::milliseconds(100);
 
 public:
 	Bullet(int x, int y, int max_x, int max_y, EDirection direction);
