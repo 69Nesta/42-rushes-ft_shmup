@@ -4,5 +4,5 @@ enum ScreenType {
 	LOBBY,
 	GAME,
 	PAUSE,
-	END
+	END,
 };

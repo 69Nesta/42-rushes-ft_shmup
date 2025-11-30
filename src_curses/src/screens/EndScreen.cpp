@@ -2,7 +2,7 @@
 #include <string>
 
 EndScreen::EndScreen(IScreenManager& screen_manager, GameStateManager &game_state):
-	Screen(screen_manager, ScreenType::END)
+	Screen(screen_manager, ScreenType::END), game_state(game_state)
 {
 	this->window = subwin(stdscr, LINES, COLS, 0, 0);
 }
@@ -32,11 +32,11 @@ void	EndScreen::render(void)
 
 }
 
-void	EndScreen::resize(int score)
+void	EndScreen::resize()
 {
 	erase();
 	std::string end_msg = "GAME OVER !";
-	std::string score_s = std::to_string(score);
+	std::string score_s = std::to_string(game_state.get_score());
 
 	start_color();
 	init_pair(1, COLOR_YELLOW, COLOR_BLACK);

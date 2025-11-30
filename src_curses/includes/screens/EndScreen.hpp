@@ -6,6 +6,7 @@ class EndScreen: public Screen
 {
 private:
 	WINDOW* window;
+	GameStateManager& game_state;
 
 public:
 	EndScreen(IScreenManager& screen_manager, GameStateManager& game_state);

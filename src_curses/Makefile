@@ -19,7 +19,8 @@ SOURCES = main.cpp \
 		screens/ToolsTip.cpp \
 		screens/ScreenManager.cpp \
 		screens/LobbyScreen.cpp \
-		screens/GameScreen.cpp
+		screens/GameScreen.cpp \
+		screens/EndScreen.cpp
 
 OBJECTS = $(addprefix $(OBJDIR)/, $(SOURCES:.cpp=.o))
 DEPS = $(OBJECTS:.o=.d)

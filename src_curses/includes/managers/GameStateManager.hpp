@@ -13,6 +13,7 @@ public:
 
 	void	rest(void);
 	void	add_score(int value = 1);
+	int		get_score();
 	void	loseLife(void);
 	void	setGameOver(void);
 

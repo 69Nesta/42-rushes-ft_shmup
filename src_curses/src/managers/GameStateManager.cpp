@@ -13,6 +13,11 @@ void	GameStateManager::rest()
 
 }
 
+int		GameStateManager::get_score()
+{
+	return(this->score);
+}
+
 void	GameStateManager::add_score(int value)
 {
 	
