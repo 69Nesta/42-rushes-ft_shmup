@@ -4,6 +4,7 @@
 #include "screens/ScreenManager.hpp"
 #include "screens/GameScreen.hpp"
 #include "screens/LobbyScreen.hpp"
+#include "screens/EndScreen.hpp"
 #include "managers/GameStateManager.hpp"
 
 class Engine

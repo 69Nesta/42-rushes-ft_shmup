@@ -9,6 +9,7 @@ LobbyScreen::LobbyScreen(IScreenManager& screen_manager, GameStateManager &game_
 
 LobbyScreen::~LobbyScreen()
 {
+
 	if (this->window)
 	{
 		free(this->window);
@@ -35,7 +36,6 @@ void	LobbyScreen::resize()
 {
 	erase();
 	std::string start_msg = "Press [Space] to start";
-
 	start_color();
 	init_pair(1, COLOR_YELLOW, COLOR_BLACK);
 	mvwprintw(this->window, LINES / 2, (COLS / 2) - start_msg.length() / 2, start_msg.c_str());

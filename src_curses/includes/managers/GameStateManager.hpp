@@ -5,6 +5,7 @@ class GameStateManager
 private:
 	int		score;
 	int		lives;
+	bool	pause;
 	bool	gameOver;
 public:
 	GameStateManager(/* args */);

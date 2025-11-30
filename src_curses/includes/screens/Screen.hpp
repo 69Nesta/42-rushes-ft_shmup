@@ -2,6 +2,7 @@
 #include "screens/IScreenManager.hpp"
 #include "engine/InputHandler.hpp"
 #include <ncurses.h>
+#include <menu.h>
 #include <stdlib.h>
 
 enum ScreenStatus {
