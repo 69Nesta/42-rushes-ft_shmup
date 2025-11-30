@@ -1,13 +1,8 @@
 #pragma once
+#include "screens/IScreenManager.hpp"
+#include "engine/InputHandler.hpp"
 #include <ncurses.h>
 #include <stdlib.h>
-
-enum ScreenType {
-	LOBBY,
-	GAME,
-	PAUSE,
-	GAMEOVER
-};
 
 enum ScreenStatus {
 	ACTIVE,
@@ -17,18 +12,20 @@ enum ScreenStatus {
 
 class Screen
 {
+protected:
+	IScreenManager&	screen_manager;
 private:
 	ScreenStatus	status;
 	ScreenType		type;
 
 public:
-	Screen(ScreenType type);
+	Screen(IScreenManager& screen_manager, ScreenType type);
 	~Screen(void);
 
 	virtual	void	initialize(void) = 0;
 	virtual void	update(float delta_time) = 0;
 	virtual void	render(void) = 0;
-	// virtual void	handleInput(void);
+	virtual void	handle_input(InputHandler& input) = 0;
 
 	void			pause(void);
 	void			resume(void);

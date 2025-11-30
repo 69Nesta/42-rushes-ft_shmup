@@ -1,15 +1,20 @@
 #include "engine/Engine.hpp"
 
-Engine::Engine(): is_running(true)
+Engine::Engine(): is_running(true), screen_manager(this->input_handler)
 {
 	initscr();
-	initialize_screens();
+	noecho();
+	curs_set(0);
+	timeout(0);
+	keypad(stdscr, TRUE);
+	this->input_handler.initialize();
+	this->initialize_screens();
 	this->run();
 }
 
 Engine::~Engine()
 {
-	
+	this->input_handler.shutdown();
 }
 
 void Engine::run()
@@ -17,26 +22,37 @@ void Engine::run()
 	while (is_running)
 	{
 		this->clock.set_start_frame();
+
 		this->process_input();
-		this->screen_manager.update(this->clock.get_delta_time());
-		this->screen_manager.render();
+		this->update(this->clock.get_delta_time());
+		this->render();
+
+		this->clock.set_end_frame();
 	}
 }
 
 void	Engine::process_input()
 {
 	this->input_handler.process_event();
+	this->screen_manager.handle_input();
 }
 
-void Engine::update()
+void Engine::update(float delta_time)
 {
+	this->screen_manager.update(delta_time);
+}
 
+void Engine::render()
+{
+	this->screen_manager.render();
 }
 
 void	Engine::initialize_screens()
 {
-	auto	lobby_screen = std::make_shared<ScreenLobby>(this->game_state_manager);
+	auto	lobby_screen = std::make_shared<LobbyScreen>(this->screen_manager, this->game_state_manager);
+	auto	game_screen = std::make_shared<GameScreen>(this->screen_manager, this->clock, this->game_state_manager);
 	this->screen_manager.register_screen(ScreenType::LOBBY, lobby_screen);
+	this->screen_manager.register_screen(ScreenType::GAME, game_screen);
 
-	this->screen_manager.push_screen(ScreenType::LOBBY);
+	this->screen_manager.change_screen(ScreenType::LOBBY);
 }

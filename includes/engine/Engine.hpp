@@ -2,8 +2,8 @@
 #include "GameClock.hpp"
 #include "InputHandler.hpp"
 #include "screens/ScreenManager.hpp"
-#include "screens/ScreenGame.hpp"
-#include "screens/ScreenLobby.hpp"
+#include "screens/GameScreen.hpp"
+#include "screens/LobbyScreen.hpp"
 #include "managers/GameStateManager.hpp"
 
 class Engine
@@ -20,7 +20,8 @@ public:
 
 	void 	run();
 	void	process_input();
-	void	update();
+	void	update(float delta_time);
+	void	render();
 	void	initialize_screens();
 };
 

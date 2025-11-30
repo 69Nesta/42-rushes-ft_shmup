@@ -11,8 +11,10 @@ private:
 	TimePoint	start_time;
 	TimePoint	frame_start_time;
 	TimePoint	previus_frame_time;
+	TimePoint	frame_end_time;
 	Duration	delta_time;
 	Duration	fixed_times_step;
+	Duration	target_frame_time;
 	Duration	accumulated_time;
 
 	bool		is_paused;
@@ -23,6 +25,8 @@ public:
 
 	void	set_start_frame();
 	void	set_end_frame();
+
+	void	set_target_fps(double fps);
 
 
 	void	pause();

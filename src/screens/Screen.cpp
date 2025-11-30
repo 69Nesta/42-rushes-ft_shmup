@@ -1,6 +1,6 @@
 #include "screens/Screen.hpp"
 
-Screen::Screen(ScreenType type): status(ScreenStatus::PAUSED)
+Screen::Screen(IScreenManager& screen_manager, ScreenType type): screen_manager(screen_manager), status(ScreenStatus::PAUSED)
 {
 	this->type = type;
 }

@@ -1,7 +1,6 @@
 #include "screens/ScreenManager.hpp"
 
-
-ScreenManager::ScreenManager()
+ScreenManager::ScreenManager(InputHandler& input_handler): input_handler(input_handler)
 {
 }
 
@@ -12,7 +11,7 @@ ScreenManager::~ScreenManager()
 void	ScreenManager::register_screen(ScreenType type, std::shared_ptr<Screen> screen)
 {
 	this->registered_screens[type] = screen;
-	screen->initialize();
+	// screen->initialize();
 }
 
 void	ScreenManager::push_screen(ScreenType type)
@@ -52,6 +51,7 @@ void	ScreenManager::change_screen(ScreenType type)
 			this->screen_stack.pop();
 		}
 		this->screen_stack.push(screen->second);
+		screen->second->initialize();
 		screen->second->resume();
 	}
 }
@@ -66,4 +66,10 @@ void	ScreenManager::render()
 {
 	if (!this->screen_stack.empty())
 		this->screen_stack.top()->render();
+}
+
+void	ScreenManager::handle_input()
+{
+	if (!this->screen_stack.empty())
+		this->screen_stack.top()->handle_input(this->input_handler);
 }

@@ -12,11 +12,14 @@ SOURCES = main.cpp \
 		engine/Engine.cpp \
 		engine/GameClock.cpp \
 		engine/InputHandler.cpp \
+		entities/Entity_2.cpp \
+		entities/Player.cpp \
 		managers/GameStateManager.cpp \
 		screens/Screen.cpp \
+		screens/ToolsTip.cpp \
 		screens/ScreenManager.cpp \
-		screens/ScreenLobby.cpp \
-		screens/ScreenGame.cpp
+		screens/LobbyScreen.cpp \
+		screens/GameScreen.cpp
 
 OBJECTS = $(addprefix $(OBJDIR)/, $(SOURCES:.cpp=.o))
 DEPS = $(OBJECTS:.o=.d)

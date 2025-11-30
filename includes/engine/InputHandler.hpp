@@ -5,11 +5,15 @@
 class InputHandler
 {
 private:
-	int key;
+	bool	initialized;
+	int		currentKey;
+    int		previousKey;
 public:
 	InputHandler();
 	~InputHandler();
 	void	process_event();
-	bool	is_key_pressed(int key);
+	bool	key_is_pressed(int key);
 	int		get_current_key();
+	void	initialize();
+	void	shutdown();
 };
